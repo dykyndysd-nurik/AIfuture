@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NURIK — AI FUTURE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#030303;--fg:#fff;--mut:#8d8d96;--ln:rgba(255,255,255,.13);--vi:#8b3dff;--go:#f5b82e;color-scheme:dark;box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:300 1rem/1.7 Manrope,Inter,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(0,0,0,.65))}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 22px) 6vw 18px;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase}
+nav .lo{font-weight:500;letter-spacing:.42em;color:#fff;text-decoration:none}
+nav .rt{display:flex;gap:2.2rem;align-items:center}
+nav a{color:var(--mut);text-decoration:none;position:relative;transition:color .4s}
+nav a:hover{color:#fff}
+nav .ls a::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:100%;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .5s}
+nav .ls a:hover::after{transform:scaleX(1)}
+.ls{display:flex;gap:2.2rem}
+.lg{display:flex;align-items:center;gap:.7rem}
+.lg i{width:1px;height:10px;background:var(--ln)}
+.lg button{background:none;border:0;color:var(--mut);font:inherit;letter-spacing:.26em;cursor:pointer;transition:color .4s;padding:4px 0}
+.lg button.on,.lg button:hover{color:#fff}
+main{position:relative;z-index:5}
+section{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:0 6vw}
+.c{max-width:31rem;width:100%}.c.w{max-width:48rem}.r{margin-left:auto}
+.lb{display:flex;gap:1.2rem;align-items:center;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);padding-top:1rem;border-top:1px solid var(--ln);margin-bottom:2rem}
+.lb b{font-weight:400;color:var(--go)}
+h1,h2{font-weight:200;text-transform:uppercase;letter-spacing:.03em;line-height:1.04;overflow-wrap:break-word}
+h1{font-size:clamp(2.1rem,6.4vw,6rem)}
+h2{font-size:clamp(1.8rem,4.4vw,3.8rem)}h2.g{font-size:clamp(2.2rem,7.2vw,6.6rem)}
+.ey{font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;color:var(--vi);margin-bottom:1.6rem;font-weight:400}
+p{color:#b9b9c0;margin-top:1.6rem;font-size:.98rem;max-width:27rem}
+.bt{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.4rem}
+.b{font:400 .68rem Manrope,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:#fff;background:none;border:1px solid rgba(255,255,255,.35);padding:1rem 1.7rem;border-radius:99px;cursor:pointer;text-decoration:none;transition:all .5s cubic-bezier(.2,.7,.1,1)}
+.b:hover{background:#fff;color:#000;border-color:#fff}
+.b.p{background:#fff;color:#000;border-color:#fff}.b.p:hover{background:var(--go);border-color:var(--go)}
+.b.on{border-color:var(--go);color:var(--go)}
+.hint{position:absolute;left:6vw;bottom:calc(env(safe-area-inset-bottom,0px) + 28px);font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mut);display:flex;gap:1rem;align-items:center}
+.hint::before{content:"";width:48px;height:1px;background:var(--mut)}
+#ct{position:fixed;right:6vw;bottom:28px;z-index:20;font-size:.62rem;letter-spacing:.3em;color:var(--mut)}
+#lab{position:absolute;inset:0;z-index:1;cursor:grab;touch-action:pan-y}#lab:active{cursor:grabbing}
+.lab{align-items:flex-start;padding-top:17vh}.lab .c,.lab .ctl{position:relative;z-index:2}
+.ctl{position:absolute;left:6vw;right:6vw;bottom:calc(env(safe-area-inset-bottom,0px) + 56px);display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;justify-content:center}
+.ro{width:100%;text-align:center;font-size:.62rem;letter-spacing:.3em;color:var(--mut);text-transform:uppercase;margin-bottom:.6rem}
+.fin{flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 70px)}
+.fin h2{max-width:60rem}.fin p{margin-inline:auto}
+form{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;width:100%;max-width:44rem}
+form label{flex:1 1 12rem;text-align:left;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mut)}
+input{width:100%;background:none;border:0;border-bottom:1px solid var(--ln);color:#fff;font:300 .95rem Manrope,sans-serif;padding:.6rem 0;outline:0;transition:border-color .4s}
+input:focus{border-color:var(--go)}
+#st{min-height:1.4em;font-size:.72rem;letter-spacing:.14em;color:var(--go);margin-top:.9rem}
+.lk{display:flex;gap:2rem;justify-content:center;margin-top:1.6rem;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;flex-wrap:wrap}
+.lk a{color:var(--mut);text-decoration:none;transition:color .4s}.lk a:hover{color:var(--go)}
+.cp{font-size:.58rem;letter-spacing:.26em;color:#55555c;margin-top:1.6rem;text-transform:uppercase}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.2s cubic-bezier(.2,.7,.1,1) calc(var(--d,0)*.12s),transform 1.2s cubic-bezier(.2,.7,.1,1) calc(var(--d,0)*.12s)}
+.in .rv{opacity:1;transform:none}
+#ld{position:fixed;inset:0;background:var(--bg);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;font-size:.7rem;letter-spacing:.6em;font-weight:300}
+#ld i{width:120px;height:1px;background:var(--ln);position:relative;overflow:hidden}
+#ld i::after{content:"";position:absolute;inset:0;background:var(--go);animation:ld 1.4s infinite}
+@keyframes ld{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+@media(max-width:800px){
+ nav .ls{display:none}nav .rt{gap:0}
+ section{align-items:flex-end;padding-bottom:9vh}
+ .c{margin:0 -6vw;width:calc(100% + 12vw);max-width:none;padding:34vh 6vw 0;background:linear-gradient(to top,#030303 62%,transparent)}
+ .c.r{margin-left:-6vw}
+ .lab{align-items:flex-start;padding-top:13vh}.lab .c{padding-top:0;background:none;margin:0;width:100%}
+ .ctl{bottom:calc(env(safe-area-inset-bottom,0px) + 26px)}
+ .fin{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 40px)}.fin .c{display:none}
+ #ct{display:none}.hint{display:none}p{font-size:.92rem}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="ld"><span>NURIK</span><i></i></div>
+<canvas id="gl"></canvas>
+<nav>
+ <a class="lo" href="#hero" data-tt="logo">NURIK</a>
+ <div class="rt">
+  <div class="ls"><a href="#intel" data-i="n1"></a><a href="#think" data-i="n2"></a><a href="#lab-s" data-i="n3"></a><a href="#end" data-i="n4"></a></div>
+  <div class="lg" role="group"><button data-l="en" data-tt="lang">EN</button><i></i><button data-l="ru" data-tt="lang">RU</button></div>
+ </div>
+</nav>
+<div id="ct">01 / 07</div>
+<main>
+<section id="hero"><div class="c">
+ <div class="ey rv" data-i="ey"></div>
+ <h1 class="rv" style="--d:1" data-i="h1"></h1>
+ <p class="rv" style="--d:2" data-i="hp"></p>
+ <div class="bt rv" style="--d:3"><a class="b p" href="#intel" data-i="b1"></a><a class="b" href="#lab-s" data-i="b2"></a></div>
+</div><div class="hint" data-i="sc"></div></section>
+
+<section id="intel"><div class="c">
+ <div class="lb rv"><b>01</b><span data-i="i_l"></span></div>
+ <h2 class="rv" style="--d:1" data-i="i_h"></h2>
+ <p class="rv" style="--d:2" data-i="i_p"></p>
+ <div class="lb rv" style="--d:3;margin-top:2.4rem;border-top:0;padding:0"><span data-i="i_c"></span></div>
+</div></section>
+
+<section id="think"><div class="c w r">
+ <div class="lb rv"><b>02.1</b><span data-i="c_l"></span></div>
+ <h2 class="g rv" style="--d:1" data-i="t_h"></h2><p class="rv" style="--d:2" data-i="t_p"></p>
+</div></section>
+<section id="create"><div class="c w">
+ <div class="lb rv"><b>02.2</b><span data-i="c_l"></span></div>
+ <h2 class="g rv" style="--d:1" data-i="c_h"></h2><p class="rv" style="--d:2" data-i="c_p"></p>
+</div></section>
+<section id="discover"><div class="c w r">
+ <div class="lb rv"><b>02.3</b><span data-i="c_l"></span></div>
+ <h2 class="g rv" style="--d:1" data-i="d_h"></h2><p class="rv" style="--d:2" data-i="d_p"></p>
+</div></section>
+
+<section id="lab-s" class="lab"><div id="lab"></div><div class="c w">
+ <div class="lb rv"><b>03</b><span data-i="l_l"></span></div>
+ <h2 class="rv" style="--d:1" data-i="l_h"></h2><p class="rv" style="--d:2" data-i="l_p"></p>
+</div>
+<div class="ctl rv"><div class="ro" id="ro"></div>
+ <button class="b" id="bx" data-i="ex" data-tt="ex_t"></button>
+ <button class="b" id="bm" data-tt="m_t"></button>
+ <button class="b on" id="ba" data-i="au" data-tt="au_t"></button>
+</div></section>
+
+<section id="end" class="fin"><div class="c w" style="max-width:60rem">
+ <div class="lb rv" style="justify-content:center"><b>04</b><span data-i="f_l"></span></div>
+ <h2 class="g rv" style="--d:1" data-i="f_h"></h2><p class="rv" style="--d:2" data-i="f_p"></p>
+</div>
+<div class="c w rv" style="--d:3;max-width:44rem;padding-top:0;background:none">
+ <form id="fm" novalidate>
+  <label><span data-i="f_e"></span><input id="em" type="email" autocomplete="email" data-ph="ph1"></label>
+  <label><span data-i="f_m"></span><input id="ms" type="text" data-ph="ph2"></label>
+  <button class="b p" type="submit" data-i="f_s"></button>
+ </form><div id="st" role="status" aria-live="polite"></div>
+ <div class="lk"><a href="mailto:hello@nurik.ai">hello@nurik.ai</a><a href="#">Telegram</a><a href="#">LinkedIn</a><a href="#">X</a></div>
+ <div class="cp" data-i="cp"></div>
+</div></section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+/* ---------- LOCALIZATION: centralized dictionaries ---------- */
+const I18N={
+en:{title:"NURIK — AI FUTURE",n1:"Intelligence",n2:"Capabilities",n3:"Lab",n4:"Contact",lang:"Language",logo:"NURIK — AI Future",
+ey:"AI Future",h1:"Intelligence beyond limits",hp:"NURIK builds adaptive intelligence that thinks, creates and discovers — shaped with the precision of architecture.",b1:"Explore",b2:"Enter the lab",sc:"Scroll",
+i_l:"Intelligence",i_h:"Information becomes intelligence",i_p:"Scattered signals are drawn into structure. Every connection refines meaning.",i_c:"Signal → Structure",
+c_l:"Capabilities",t_h:"Think",t_p:"Reasoning that holds context across millions of signals — calm, precise, explainable.",c_h:"Create",c_p:"Form, language and image composed from intent, with a craftsman’s restraint.",d_h:"Discover",d_p:"Patterns no one searched for, lifted out of the noise and made visible.",
+l_l:"Interactive lab",l_h:"Hold the future",l_p:"Drag to rotate. Take the sculpture apart.",ex:"Explode",ex_t:"Separate or reassemble the components",m_t:"Change ring material",au:"Auto",au_t:"Toggle automatic rotation",m_chrome:"Chrome",m_gold:"Gold",m_obsidian:"Obsidian",ro:"Rotation",
+f_l:"Contact",f_h:"The future takes form",f_p:"Let’s build what comes next.",f_e:"Email",f_m:"Message",ph1:"you@domain.com",ph2:"What are you imagining?",f_s:"Send",f_ok:"Message received. We’ll reply soon.",f_err:"Please enter a valid email.",cp:"© 2026 NURIK — AI Future"},
+ru:{title:"NURIK — ИИ БУДУЩЕГО",n1:"Интеллект",n2:"Возможности",n3:"Лаборатория",n4:"Контакты",lang:"Язык",logo:"NURIK — ИИ будущего",
+ey:"ИИ будущего",h1:"Интеллект за пределами",hp:"NURIK создаёт адаптивный интеллект, который думает, творит и открывает — с точностью архитектуры.",b1:"Исследовать",b2:"В лабораторию",sc:"Листайте",
+i_l:"Интеллект",i_h:"Информация становится разумом",i_p:"Разрозненные сигналы складываются в структуру. Каждая связь уточняет смысл.",i_c:"Сигнал → Структура",
+c_l:"Возможности",t_h:"Мыслить",t_p:"Рассуждение, удерживающее контекст среди миллионов сигналов — спокойно, точно, объяснимо.",c_h:"Творить",c_p:"Форма, язык и образ, рождённые из замысла — со сдержанностью мастера.",d_h:"Открывать",d_p:"Закономерности, которых никто не искал, выходят из шума и становятся видимыми.",
+l_l:"Интерактивная лаборатория",l_h:"Держите будущее",l_p:"Перетащите, чтобы вращать. Разберите скульптуру.",ex:"Разобрать",ex_t:"Разделить или собрать компоненты",m_t:"Сменить материал колец",au:"Авто",au_t:"Включить автовращение",m_chrome:"Хром",m_gold:"Золото",m_obsidian:"Обсидиан",ro:"Поворот",
+f_l:"Контакты",f_h:"Будущее обретает форму",f_p:"Давайте построим то, что будет дальше.",f_e:"Почта",f_m:"Сообщение",ph1:"you@domain.com",ph2:"Что вы представляете?",f_s:"Отправить",f_ok:"Сообщение получено. Скоро ответим.",f_err:"Введите корректный адрес почты.",cp:"© 2026 NURIK — ИИ будущего"}};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let lang='en',stKey='',MATS=['chrome','gold','obsidian'],mi=0;
+try{const s=localStorage.getItem('nurik-lang');if(I18N[s])lang=s}catch(e){}
+const tr=k=>I18N[lang][k]||k;
+function applyLang(l){lang=l;try{localStorage.setItem('nurik-lang',l)}catch(e){}
+ document.documentElement.lang=l;document.title=tr('title');
+ $$('[data-i]').forEach(e=>e.textContent=tr(e.dataset.i));
+ $$('[data-ph]').forEach(e=>e.placeholder=tr(e.dataset.ph));
+ $$('[data-tt]').forEach(e=>{e.title=tr(e.dataset.tt);e.setAttribute('aria-label',e.title)});
+ $$('.lg button').forEach(b=>{b.classList.toggle('on',b.dataset.l===l);b.setAttribute('aria-pressed',b.dataset.l===l)});
+ $('#bm').textContent=tr('m_'+MATS[mi]);$('#st').textContent=stKey?tr(stKey):''}
+$$('.lg button').forEach(b=>b.onclick=()=>applyLang(b.dataset.l));
+$('#fm').onsubmit=e=>{e.preventDefault();const ok=/^\S+@\S+\.\S+$/.test($('#em').value);stKey=ok?'f_ok':'f_err';$('#st').textContent=tr(stKey);if(ok)e.target.reset()};
+applyLang(lang);
+const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in',e.isIntersecting)),{threshold:.25});
+$$('section').forEach(s=>io.observe(s));
+
+/* ---------- 3D ---------- */
+const T=THREE,RM=matchMedia('(prefers-reduced-motion: reduce)').matches,spd=RM?.15:1;
+const mobile=matchMedia('(max-width:800px)').matches;
+const R=new T.WebGLRenderer({canvas:$('#gl'),antialias:!mobile,powerPreference:'high-performance'});
+R.setPixelRatio(Math.min(devicePixelRatio,mobile?1.5:2));R.toneMapping=T.ACESFilmicToneMapping;R.toneMappingExposure=1.05;R.outputEncoding=T.sRGBEncoding;
+const scene=new T.Scene();scene.background=new T.Color(0x030303);scene.fog=new T.Fog(0x030303,16,40);
+const cam=new T.PerspectiveCamera(36,1,.1,100);
+
+function makeEnv(){const s=new T.Scene();
+ s.add(new T.Mesh(new T.BoxGeometry(40,40,40),new T.MeshBasicMaterial({color:0x050507,side:T.BackSide})));
+ const P=(w,h,c,k,x,y,z)=>{const m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({color:new T.Color(c).multiplyScalar(k),side:T.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);s.add(m)};
+ P(14,6,0xffffff,6,0,16,4);P(3,16,0xffffff,5,-14,2,6);P(3,14,0xb78bff,5,15,0,-4);P(10,2,0xffc247,7,0,-12,8);P(8,8,0x6a2cff,2.5,0,4,-18);P(2,12,0xffffff,4,10,0,14);
+ const p=new T.PMREMGenerator(R),t=p.fromScene(s,.02).texture;p.dispose();return t}
+scene.environment=makeEnv();
+const key=new T.DirectionalLight(0xffffff,.8);const vio=new T.PointLight(0x8b3dff,2,30);const gol=new T.PointLight(0xf5b82e,1.4,30);
+const rig=new T.Group();rig.add(key,vio,gol);key.position.set(5,8,8);vio.position.set(-7,2,-3);gol.position.set(3,-3,7);scene.add(rig);
+
+/* materials */
+const chromeP={color:0xf2f2f5,metalness:1,roughness:.07,envMapIntensity:1.25};
+const chrome=new T.MeshStandardMaterial(chromeP),goldM=new T.MeshStandardMaterial({color:0xf5b82e,metalness:1,roughness:.16,envMapIntensity:1.2}),
+ darkM=new T.MeshStandardMaterial({color:0x0b0b0e,metalness:1,roughness:.14,envMapIntensity:1.4});
+const glassM=new T.MeshPhysicalMaterial({color:0x9a5cff,metalness:0,roughness:.03,transmission:.9,thickness:1.5,ior:1.5,clearcoat:1,clearcoatRoughness:.02,transparent:true,opacity:.92,envMapIntensity:1.8});
+const glow=(c,p,k)=>new T.ShaderMaterial({uniforms:{c:{value:new T.Color(c)},p:{value:p},k:{value:k}},transparent:true,depthWrite:false,blending:T.AdditiveBlending,
+ vertexShader:'varying vec3 n;varying vec3 v;void main(){n=normalize(normalMatrix*normal);vec4 m=modelViewMatrix*vec4(position,1.);v=normalize(-m.xyz);gl_Position=projectionMatrix*m;}',
+ fragmentShader:'uniform vec3 c;uniform float p;uniform float k;varying vec3 n;varying vec3 v;void main(){float f=pow(1.-abs(dot(n,v)),p);gl_FragColor=vec4(c*f*k,1.);}'});
+const gSph=(r,s=40)=>new T.SphereGeometry(r,s,s*.7|0);
+function glassBall(r){const g=new T.Group();g.add(new T.Mesh(gSph(r,48),glassM));g.add(new T.Mesh(gSph(r*.4,20),new T.MeshBasicMaterial({color:0x6d2bff})));g.add(new T.Mesh(gSph(r*1.1,28),glow(0xa56bff,2.6,1.5)));return g}
+const goldCore=r=>{const g=new T.Group();g.add(new T.Mesh(gSph(r,40),new T.MeshBasicMaterial({color:0xffd067})));g.add(new T.Mesh(gSph(r*1.9,32),glow(0xf5b82e,2,2.4)));return g}
+const ringM=(r,t,m,s=128)=>new T.Mesh(new T.TorusGeometry(r,t,24,s),m);
+const edges=(geo,op)=>new T.LineSegments(new T.EdgesGeometry(geo),new T.LineBasicMaterial({color:0xffffff,transparent:true,opacity:op}));
+function mk(){const S={g:new T.Group(),parts:[],tick:[],
+ add(o,d,k=1,b){S.g.add(o);S.parts.push({o,d:d||new T.Vector3(),k,b:b||new T.Vector3()})},
+ update(t,dt,ex,ctx){S.tick.forEach(f=>f(t,dt,ctx));S.parts.forEach(p=>p.o.position.copy(p.d).multiplyScalar(ex*p.k).add(p.b))}};return S}
+const V=(x,y,z)=>new T.Vector3(x,y,z);
+
+/* HERO sculpture: interlocking chrome rings, violet glass, golden core */
+function sculpt(mat=chrome){const S=mk(),spins=[];
+ const core=goldCore(.5);S.add(core);
+ S.tick.push(t=>core.scale.setScalar(1+Math.sin(t*1.6)*.07+Math.sin(t*.7)*.03));
+ const cage=edges(new T.IcosahedronGeometry(1,1),.3);cage.scale.setScalar(.95);S.add(cage,V(0,0,0),0);S.tick.push((t,dt)=>{cage.rotation.y+=dt*.2;cage.rotation.x-=dt*.1});
+ [[1.3,.05,1.2,0,.5],[1.8,.07,0,1.1,-.38],[2.35,.055,.5,.3,.3],[2.95,.085,1.5,.5,-.22],[3.55,.032,.25,1.2,.16]].forEach((c,i)=>{
+  const tilt=new T.Group(),spin=new T.Group();tilt.rotation.set(c[2],c[3],i*.7);tilt.add(spin);spin.add(ringM(c[0],c[1],mat));spins.push(spin);
+  S.add(tilt,V(0,(i-2)*1.1,0),1.5);S.tick.push((t,dt)=>{spin.rotation.z+=dt*c[4]*spd;tilt.rotation.x+=dt*.03*(i%2?1:-1)*spd})});
+ const ride=(i,R,a,o)=>{o.position.set(Math.cos(a)*R,Math.sin(a)*R,0);spins[i].add(o)};
+ ride(0,1.3,1,new T.Mesh(gSph(.09),goldM));ride(1,1.8,.5,glassBall(.3));ride(2,2.35,4,new T.Mesh(gSph(.15),mat));
+ ride(3,2.95,2.2,glassBall(.42));ride(4,3.55,3.5,glassBall(.2));ride(4,3.55,.5,new T.Mesh(gSph(.12),goldM));
+ const d=new T.Object3D(),tk=new T.InstancedMesh(new T.BoxGeometry(.02,.14,.02),mat,72);
+ for(let i=0;i<72;i++){const a=i/72*6.2832;d.position.set(Math.cos(a)*3.55,Math.sin(a)*3.55,0);d.rotation.z=a-1.5708;d.updateMatrix();tk.setMatrixAt(i,d.matrix)}spins[4].add(tk);
+ return S}
+
+/* THINK: nested lattices around a glass mind */
+function think(){const S=mk();S.add(glassBall(1.25));
+ const ic=new T.Mesh(new T.IcosahedronGeometry(.42,1),goldM);S.add(ic);S.tick.push((t,dt)=>{ic.rotation.y+=dt;ic.rotation.x+=dt*.6});
+ [2,2.7,3.4].forEach((r,i)=>{const sh=new T.Group();sh.add(edges(new T.IcosahedronGeometry(r,i==1?1:0),.4));
+  const g=new T.IcosahedronGeometry(r,0).attributes.position,seen={};for(let v=0;v<g.count;v++){const k=[g.getX(v),g.getY(v),g.getZ(v)].map(n=>n.toFixed(2)).join();if(seen[k])continue;seen[k]=1;
+   const n=new T.Mesh(gSph(i==1?.08:.11,14),i==1?goldM:chrome);n.position.set(g.getX(v),g.getY(v),g.getZ(v));sh.add(n)}
+  S.add(sh,V(0,(i-1)*.9,0),1.5);S.tick.push((t,dt)=>{sh.rotation.y+=dt*(.15+i*.06)*(i%2?-1:1)*spd;sh.rotation.x+=dt*.05*spd})});return S}
+/* CREATE: counter-rotating knots */
+function create(){const S=mk();S.add(glassBall(.55));
+ [[1.4,.12,2,3,chrome],[2.1,.07,3,5,goldM],[2.8,.045,2,5,darkM]].forEach((c,i)=>{const k=new T.Mesh(new T.TorusKnotGeometry(c[0],c[1],240,20,c[2],c[3]),c[4]);
+  S.add(k,V(0,(i-1)*1.2,0),1.4);S.tick.push((t,dt)=>{k.rotation.x+=dt*.25*(i%2?-1:1)*spd;k.rotation.y+=dt*.18*spd})});
+ const o=new T.Group(),b=new T.Mesh(gSph(.16),goldM);b.position.x=3.4;o.add(b);o.rotation.z=.5;S.add(o);S.tick.push((t,dt)=>o.rotation.y+=dt*.8*spd);return S}
+/* DISCOVER: armillary gimbal */
+function discover(){const S=mk(),c=new T.Mesh(gSph(.6,48),chrome);S.add(c);const sp=[];
+ [[1.4,.03,0,0],[2,.035,1.57,0],[2.6,.03,.8,.9]].forEach((q,i)=>{const t=new T.Group(),s=new T.Group();t.rotation.set(q[2],q[3],0);t.add(s);s.add(ringM(q[0],q[1],chrome));sp.push(s);
+  S.add(t,V((i-1)*.5,(i-1)*1.2,0),1.5);S.tick.push((T_,dt)=>{s.rotation.z+=dt*(.5-i*.2)*spd;t.rotation.y+=dt*.1*spd})});
+ const r=(i,R,a,o)=>{o.position.set(Math.cos(a)*R,Math.sin(a)*R,0);sp[i].add(o)};
+ r(1,2,0,new T.Mesh(gSph(.14),goldM));r(2,2.6,2,glassBall(.3));r(0,1.4,3,new T.Mesh(new T.ConeGeometry(.08,.3,16),chrome));
+ const tor=new T.Mesh(new T.TorusGeometry(3.2,.1,16,96),glassM);tor.rotation.x=1.2;S.add(tor,V(0,-1.6,0),1.2);S.tick.push((t,dt)=>tor.rotation.z+=dt*.1*spd);return S}
+/* INTELLIGENCE network */
+function intel(){const S=mk(),N=46,sc=[],od=[],nodes=[];const geo=gSph(.09,14);
+ for(let i=0;i<N+4;i++){const o=i<N?new T.Mesh(geo,i%9==0?goldM:chrome):glassBall(.24);S.g.add(o);nodes.push(o);
+  sc.push(V((Math.random()-.5)*8,(Math.random()-.5)*6,(Math.random()-.5)*5));
+  const y=1-2*(i+.5)/(N+4),r=Math.sqrt(1-y*y),a=i*2.39996;od.push(V(Math.cos(a)*r,y,Math.sin(a)*r).multiplyScalar(2.5))}
+ const pr=[];for(let i=0;i<N+4;i++)[1,7,19].forEach(o=>pr.push([i,(i+o)%(N+4)]));
+ const pos=new Float32Array(pr.length*6),ge=new T.BufferGeometry();ge.setAttribute('position',new T.BufferAttribute(pos,3));
+ S.g.add(new T.LineSegments(ge,new T.LineBasicMaterial({color:0xcdb8ff,transparent:true,opacity:.32})));
+ const core=goldCore(.38);S.g.add(core);
+ S.tick.push((t,dt,c)=>{const m=c.m,e=m*m*(3-2*m);core.scale.setScalar(.001+e*(1+Math.sin(t*1.6)*.08));
+  nodes.forEach((o,i)=>{o.position.lerpVectors(sc[i],od[i],e);const w=(1.1-e)*.14;o.position.x+=Math.sin(t*.7+i*1.7)*w;o.position.y+=Math.cos(t*.6+i*2.1)*w});
+  pr.forEach((p,j)=>{const a=nodes[p[0]].position,b=nodes[p[1]].position;pos.set([a.x,a.y,a.z,b.x,b.y,b.z],j*6)});ge.attributes.position.needsUpdate=true});
+ return S}
+/* FINAL: everything converges */
+function finale(){const S=sculpt(),orb=new T.Group();
+ [[think,0],[create,2.09],[discover,4.19]].forEach(([fn,a],i)=>{const m=fn();m.g.scale.setScalar(.2);m.g.position.set(Math.cos(a)*4.4,(i-1)*1.2,Math.sin(a)*4.4);
+  orb.add(m.g);S.tick.push((t,dt,c)=>m.update(t,dt,0,c));const d=V(Math.cos(a),0,Math.sin(a));S.parts.push({o:m.g,d:d,k:9,b:m.g.position.clone()})});
+ S.g.add(orb);S.tick.push((t,dt)=>orb.rotation.y+=dt*.15*spd);return S}
+
+const labMat=new T.MeshStandardMaterial(chromeP);
+const G=[sculpt(),intel(),think(),create(),discover(),sculpt(labMat),finale()].map((S,i)=>{scene.add(S.g);return{S,i}});
+const XS=[1,1,-1,1,-1,0,0],SCL=[1,1,1,1,1,1,.92];
+
+/* particles */
+const H=14;function pts(n,c,s,o){const a=new Float32Array(n*3);for(let i=0;i<n;i++){a[i*3]=(Math.random()-.5)*30;a[i*3+1]=Math.random()*-(6*H+10)+8;a[i*3+2]=(Math.random()-.5)*20-2}
+ const g=new T.BufferGeometry();g.setAttribute('position',new T.BufferAttribute(a,3));const p=new T.Points(g,new T.PointsMaterial({color:c,size:s,transparent:true,opacity:o,depthWrite:false}));scene.add(p);return p}
+const P1=pts(mobile?350:700,0xffffff,.03,.55),P2=pts(120,0xf5b82e,.05,.8),P3=pts(120,0x9a5cff,.05,.8);
+
+/* state */
+let tops=[],PORT=false,SC=1,f=0,sf=0,t=0,last=performance.now(),mx=0,my=0;const sm={x:0,y:0},intro={v:1},lab={x:.2,y:0,vx:0,vy:0,auto:true,ex:0,exT:0,drag:false};
+const F=y=>{for(let i=tops.length-1;i>=0;i--)if(y>=tops[i]){const n=tops[i+1];return n?i+(y-tops[i])/(n-tops[i]):i}return 0};
+function layout(){const w=innerWidth,h=innerHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();PORT=w/h<1.05;SC=PORT?Math.max(.46,Math.min(.8,w/h*1.05)):1;tops=$$('main>section').map(s=>s.offsetTop)}
+addEventListener('resize',layout);addEventListener('load',layout);layout();
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1});
+/* lab interaction */
+const lp=$('#lab');let px=0,py=0;
+lp.addEventListener('pointerdown',e=>{lab.drag=true;px=e.clientX;py=e.clientY;try{lp.setPointerCapture(e.pointerId)}catch(_){}});
+lp.addEventListener('pointermove',e=>{if(!lab.drag)return;lab.vy=(e.clientX-px)*.012;lab.vx=(e.clientY-py)*.012;lab.y+=(e.clientX-px)*.008;lab.x=Math.max(-1.2,Math.min(1.2,lab.x+(e.clientY-py)*.008));px=e.clientX;py=e.clientY});
+['pointerup','pointercancel'].forEach(n=>lp.addEventListener(n,()=>lab.drag=false));
+$('#bx').onclick=e=>{lab.exT=lab.exT?0:1;e.target.classList.toggle('on',!!lab.exT)};$('#bx').classList.remove('on');
+$('#ba').onclick=e=>{lab.auto=!lab.auto;e.target.classList.toggle('on',lab.auto)};
+const PRESET={chrome:[0xf2f2f5,.07],gold:[0xf5b82e,.15],obsidian:[0x0b0b0e,.12]};
+$('#bm').onclick=()=>{mi=(mi+1)%3;const p=PRESET[MATS[mi]];labMat.color.setHex(p[0]);labMat.roughness=p[1];$('#bm').textContent=tr('m_'+MATS[mi])};
+
+const RAD=[12.5,10.5,10,10,10,10.5,13],lerp=(a,b,x)=>a+(b-a)*x,ctEl=$('#ct'),roEl=$('#ro');let lastCt='';
+function frame(now){requestAnimationFrame(frame);const dt=Math.min((now-last)/1000,.05);last=now;t+=dt*spd;
+ const tg=Math.min(F(scrollY),6);sf=RM?tg:sf+(tg-sf)*(1-Math.exp(-dt*4.5));f=sf;
+ const k=1-Math.exp(-dt*3.2);sm.x+=(mx-sm.x)*k;sm.y+=(my-sm.y)*k;
+ const i0=Math.floor(f),fr=f-i0,e=fr*fr*(3-2*fr),r=lerp(RAD[i0],RAD[Math.min(6,i0+1)],e)+intro.v*3,a=Math.sin(f*1.1)*.5+intro.v*.4,y=-f*H;
+ cam.position.set(Math.sin(a)*r*.5+sm.x*.5,y+1+Math.sin(f*2.3)*.5-sm.y*.4,Math.cos(a)*r);cam.lookAt(0,y,0);rig.position.y=y;
+ const base=Math.pow(Math.abs(Math.sin(Math.PI*f)),1.1);
+ lab.ex+=(lab.exT-lab.ex)*(1-Math.exp(-dt*3));
+ G.forEach(({S,i})=>{const near=Math.abs(f-i)<1.25;S.g.visible=near;if(!near)return;
+  let ex=Math.min(1,base+((i==0||i==6)?intro.v:0));if(i==5)ex=Math.max(ex,lab.ex);
+  const yo=PORT?(i==6?1.3:2):(i==6?1.3:0);
+  S.g.position.set(PORT?0:XS[i]*3.4,-i*H+yo+(RM?0:Math.sin(t*.6+i)*.15),0);S.g.scale.setScalar(SC*SCL[i]);
+  if(i==5){if(!lab.drag){lab.vy*=.94;lab.vx*=.94;lab.y+=lab.vy*.5+(lab.auto?dt*.35*spd:0);lab.x+=lab.vx*.5;lab.x=Math.max(-1.2,Math.min(1.2,lab.x))}
+   S.g.rotation.set(lab.x,lab.y,0);roEl.textContent=tr('ro')+'  '+(((lab.y*57.3%360)+360)%360|0)+'° / '+(lab.x*57.3|0)+'°'}
+  else{const ty=t*.12+(f-i)*.9+sm.x*.5,tx=sm.y*.22+Math.sin(t*.3)*.05,kk=1-Math.exp(-dt*3);S.g.rotation.y+=(ty-S.g.rotation.y)*kk;S.g.rotation.x+=(tx-S.g.rotation.x)*kk}
+  S.update(t,dt*spd,ex,{m:Math.max(0,Math.min(1,(f-.55)/.5))})});
+ P1.position.y=-f*H*.12;P2.position.y=-f*H*.2;P3.position.y=-f*H*.06;P2.rotation.y=P3.rotation.y=t*.02;
+ const c=String(Math.round(f)+1).padStart(2,'0')+' / 07';if(c!==lastCt){ctEl.textContent=c;lastCt=c}
+ R.render(scene,cam)}
+G.forEach(g=>g.S.g.visible=true);try{R.compile(scene,cam)}catch(e){}
+requestAnimationFrame(frame);
+const done=()=>{const l=$('#ld');if(window.gsap){gsap.to(l,{opacity:0,duration:1,delay:.3,onComplete:()=>l.remove()});if(!RM)gsap.to(intro,{v:0,duration:3.6,delay:.4,ease:'power3.out'});else intro.v=0}else{l.remove();intro.v=0}};
+setTimeout(done,500);
+</script>
+</body>
+</html>
